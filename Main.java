@@ -23,16 +23,23 @@ public class Main
 
   public static void main(String[] args)
   {
+    System.out.println( "Welcome to our project! This program will tell you how many dyas you have to complete an asiignment. You can put up to five assingnemts into the program.");
+    System.out.println( " first we will need todays date.");
+
 
     int monthToday, dayToday, yearToday;
     
     monthToday = UtilityBelt.readInt("What month is it today? (Ex. Jan = 1, July = 7)\n", 1, 12); 
     dayToday = UtilityBelt.readInt("What day is it?\n", 1, 31);
     yearToday = UtilityBelt.readInt("What year?\n", 2020,2024);
-
     String todayDate = Main.date(monthToday, dayToday, yearToday);
-
+    int todayjulian= Main.calcJulianDate(monthToday,dayToday,yearToday);
     System.out.println("Today's date is " + todayDate);
+
+     String assignment1= Main.AssignName();
+     int assigndate1=Main.AssignDate();
+     int differnce1=Main.calcdifference(assigndate1,todayjulian);
+     System.out.println(" You have "+ differnce1 +" days left to complete the assignment"+assignment1);
 
   }
 
@@ -67,5 +74,11 @@ public class Main
     int juliandate = Main.calcJulianDate(month, day, year);
     return juliandate;
   }
-
+  public static int calcdifference(int date1,int date2)
+  {
+    int difference= date1 - date2;
+    return difference;
+  }
 }
+
+
