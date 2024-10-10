@@ -1,7 +1,7 @@
 /********************************************
 *	AUTHORS:	Valentine 
 * COLLABORATORS: Trevor, Frankie
-*	LAST MODIFIED:	10/08/2024
+*	LAST MODIFIED:	10/10/2024
 ********************************************/
 
 /********************************************
@@ -68,7 +68,7 @@ public class Main
 
   public static String assignName()
   {
-    String name = UtilityBelt.readString("What is the name of the assignment?", 1, 99);
+    String name = UtilityBelt.readString("What is the name of the assignment?\n", 1, 99);
     return name;
   }
 
