@@ -47,7 +47,7 @@ public class Main
     assignDate1 = Main.assignDate();
     difference1 = Main.calcDifference(assignDate1,todayJulian);
     System.out.println("You have "+ difference1 +" days left to complete the assignment "+assignment1);
-
+  
   }
 
   /***** STATIC METHODS *****/
@@ -89,6 +89,12 @@ public class Main
     int difference = date1 - date2;
     return difference;
   }
+  public static void daysleft( int difference, String assignent )
+  {
+        System.out.println("You have "+ difference +" days left to complete the assignment "+assignment);
+      
+  }
 }
+
 
 
