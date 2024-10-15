@@ -1,6 +1,6 @@
 /********************************************
-*	AUTHORS:	Valentine 
-* COLLABORATORS: Trevor, Frankie
+*	AUTHORS:	Valentine, Trevor, Frankie
+* COLLABORATORS: 
 *	LAST MODIFIED:	10/15/2024
 ********************************************/
 
@@ -9,35 +9,35 @@
 *********************************************
 *	PROGRAM DESCRIPTION:
 The program allows the user to input information of an assignment and outputs the time in days and weeks left
-to complete the assignment. 
+to complete the assignment. Can go up to 3 assignments.
 *********************************************
 *	ALGORITHM:
 *	Print Welcome message
-    Obtain user input for today's date
-      Convert today's date into a julian day number
-      Use date method to format user input
-    For every assignment:
-      Obtain user input for the name of the assignment
-      Obtain user input for the due date of the assignment
-        Convert user input to a julian day number
-          Calculate difference between assignment julian day number and today's julian day number
-            Output difference
-            Divide difference by 7 to convert to weeks
-            Output time in weeks
-      Ask user if they want to continue
-        if yes, go to next assignment
-        if no say goodbye
-        else show error and say goodbye
+*    Obtain user input for today's date
+*      Convert today's date into a julian day number
+*      Use date method to format user input
+*    For every assignment:
+*      Obtain user input for the name of the assignment
+*      Obtain user input for the due date of the assignment
+*        Convert user input to a julian day number
+*          Calculate difference between assignment julian day number and today's julian day number
+*            Output difference
+*            Divide difference by 7 to convert to weeks
+*            Output time in weeks
+*      Ask user if they want to continue
+*        if yes, go to next assignment
+*        if no say goodbye
+*        else say goodbye
+*      If user reaches 3rd/last assignment ends with a goodbye
 
 *********************************************
 *	STATIC METHODS:
-* <list of static methods and which teammate made each>
-"date" Method - Valentine
-"calcJulianDate" Method - Valentine
-"assignName" Method -     Trevor
-"assignDate" Method -     Trevor
-"calcDifference" Method - Frankie
-"timeWeek" Method -       Frankie
+* "date" Method -           Valentine
+* "calcJulianDate" Method - Valentine
+* "assignName" Method -     Trevor
+* "assignDate" Method -     Trevor
+* "calcDifference" Method - Frankie
+* "timeWeek" Method -       Frankie
 *********************************************/
 
 public class Main 
@@ -63,10 +63,6 @@ public class Main
     int assignDate1, assignDate2, assignDate3;
     int difference1, difference2, difference3;
 
-    String yes = "Yes";
-    String yesLower = "yes";
-    String no = "No";
-
 
     //Assignment 1
     assignment1 = Main.assignName();
@@ -74,8 +70,8 @@ public class Main
     difference1 = Main.calcDifference(assignDate1,todayJulian);
     System.out.println("You have "+ difference1 +" days left to complete the assignment "+ assignment1);
     Main.timeWeek(assignDate1, todayJulian);
-    String yesNo1 = UtilityBelt.readString("Did you want to put in another assignment? (Yes/No)\n", 2, 3);
-    if (yesNo1 == yes || yesNo1 == yesLower)
+    char yesNo1 = UtilityBelt.readChar("\nDid you want to put in another assignment? (Y/N)\n", "YNyn");
+    if (yesNo1 == 'Y' || yesNo1 == 'y')
     {
        //Assignment 2
         assignment2 = Main.assignName();
@@ -83,8 +79,8 @@ public class Main
         difference2 = Main.calcDifference(assignDate2,todayJulian);
         System.out.println("You have "+ difference2 +" days left to complete the assignment "+ assignment2);
         Main.timeWeek(assignDate2, todayJulian);
-        String yesNo2 = UtilityBelt.readString("Did you want to put in another assignment? (Yes/No)\n", 2, 3);
-        if (yesNo2 == "Yes")
+        char yesNo2 = UtilityBelt.readChar("\nDid you want to put in another assignment? (Yes/No)\n", "YyNn");
+        if (yesNo2 == 'Y' || yesNo2 == 'y')
         {
           //Assignment 3
           assignment3 = Main.assignName();
@@ -92,18 +88,22 @@ public class Main
           difference3 = Main.calcDifference(assignDate3,todayJulian);
           System.out.println("You have "+ difference3 +" days left to complete the assignment "+ assignment3);
           Main.timeWeek(assignDate3, todayJulian);
-        }
-        else if (yesNo2 == "No")
-        {
           System.out.println("Goodbye!");
+        }
+        else if (yesNo2 == 'N' || yesNo2 == 'n')
+        {
+          System.out.println("Can't add more assignments. Goodbye!");
         }
         else
         {
-          System.out.println("ERROR not a Yes or No");
           System.out.println("Goodbye!");
         }
     }
-    else if (yesNo1 == "No" || yesNo1 == "no")
+    else if (yesNo1 == 'N' || yesNo1 == 'n')
+    {
+      System.out.println("Goodbye!");
+    }
+    else
     {
       System.out.println("Goodbye!");
     }
