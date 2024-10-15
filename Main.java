@@ -24,6 +24,10 @@ to complete the assignment.
             Output difference
             Divide difference by 7 to convert to weeks
             Output time in weeks
+      Ask user if they want to continue
+        if yes, go to next assignment
+        if no say goodbye
+        else show error and say goodbye
 
 *********************************************
 *	STATIC METHODS:
@@ -41,7 +45,7 @@ public class Main
 
   public static void main(String[] args)
   {
-    System.out.println( "Welcome to our project! This program will tell you how many days you have to complete an assignment.\n You can put up to five assignments into the program.");
+    System.out.println( "Welcome to our project! This program will tell you how many days you have to complete an assignment.\nYou can put up to three assignments into the program.");
     System.out.println( "First we will need today's date.");
 
 
@@ -55,9 +59,13 @@ public class Main
     String todayDate = Main.date(monthToday, dayToday, yearToday);
     System.out.println("Today's date is " + todayDate);
 
-    String assignment1, assignment2, assignment3, assignment4, assignment5;
-    int assignDate1, assignDate2, assignDate3, assignDate4, assignDate5;
-    int difference1, difference2, difference3, difference4, difference5;
+    String assignment1, assignment2, assignment3;
+    int assignDate1, assignDate2, assignDate3;
+    int difference1, difference2, difference3;
+
+    String yes = "Yes";
+    String yesLower = "yes";
+    String no = "No";
 
 
     //Assignment 1
@@ -66,34 +74,40 @@ public class Main
     difference1 = Main.calcDifference(assignDate1,todayJulian);
     System.out.println("You have "+ difference1 +" days left to complete the assignment "+ assignment1);
     Main.timeWeek(assignDate1, todayJulian);
+    String yesNo1 = UtilityBelt.readString("Did you want to put in another assignment? (Yes/No)\n", 2, 3);
+    if (yesNo1 == yes || yesNo1 == yesLower)
+    {
+       //Assignment 2
+        assignment2 = Main.assignName();
+        assignDate2 = Main.assignDate();
+        difference2 = Main.calcDifference(assignDate2,todayJulian);
+        System.out.println("You have "+ difference2 +" days left to complete the assignment "+ assignment2);
+        Main.timeWeek(assignDate2, todayJulian);
+        String yesNo2 = UtilityBelt.readString("Did you want to put in another assignment? (Yes/No)\n", 2, 3);
+        if (yesNo2 == "Yes")
+        {
+          //Assignment 3
+          assignment3 = Main.assignName();
+          assignDate3 = Main.assignDate();
+          difference3 = Main.calcDifference(assignDate3,todayJulian);
+          System.out.println("You have "+ difference3 +" days left to complete the assignment "+ assignment3);
+          Main.timeWeek(assignDate3, todayJulian);
+        }
+        else if (yesNo2 == "No")
+        {
+          System.out.println("Goodbye!");
+        }
+        else
+        {
+          System.out.println("ERROR not a Yes or No");
+          System.out.println("Goodbye!");
+        }
+    }
+    else if (yesNo1 == "No" || yesNo1 == "no")
+    {
+      System.out.println("Goodbye!");
+    }
 
-    //Assignment 2
-    assignment2 = Main.assignName();
-    assignDate2 = Main.assignDate();
-    difference2 = Main.calcDifference(assignDate2,todayJulian);
-    System.out.println("You have "+ difference2 +" days left to complete the assignment "+ assignment2);
-    Main.timeWeek(assignDate2, todayJulian);
-
-    //Assignment 3
-    assignment3 = Main.assignName();
-    assignDate3 = Main.assignDate();
-    difference3 = Main.calcDifference(assignDate3,todayJulian);
-    System.out.println("You have "+ difference3 +" days left to complete the assignment "+ assignment3);
-    Main.timeWeek(assignDate3, todayJulian);
-
-    //Assignment 4
-    assignment4 = Main.assignName();
-    assignDate4 = Main.assignDate();
-    difference4 = Main.calcDifference(assignDate4,todayJulian);
-    System.out.println("You have "+ difference4 +" days left to complete the assignment "+ assignment4);
-    Main.timeWeek(assignDate4, todayJulian);
-    
-    //Assignment 5
-    assignment5 = Main.assignName();
-    assignDate5 = Main.assignDate();
-    difference5 = Main.calcDifference(assignDate5,todayJulian);
-    System.out.println("You have "+ difference5 +" days left to complete the assignment "+ assignment5);
-    Main.timeWeek(assignDate5, todayJulian);
 
   }
 
@@ -140,8 +154,8 @@ public class Main
 
   public static void timeWeek(int date1, int date2)
   {
-    double timeWeek = Main.calcDifference(date1, date2)/7;
-    System.out.println("You have " + timeWeek + " weeks to complete the assignment.");
+    double timeWeek = Main.calcDifference(date1, date2)/7.0;
+    System.out.format("You have %2.2f weeks to complete the assignment.", timeWeek);
   }
 
 }
